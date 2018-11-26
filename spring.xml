@@ -26,8 +26,8 @@
 		<property name="current_balance" value="1500"/>
 		<property name="max_minus" value="-300"/>
 	</bean>
-<!-- 	
+
 	<bean id="bankAspect" class="com.example.demo.BankAspect"></bean>
--->
+
 	
 </beans>
