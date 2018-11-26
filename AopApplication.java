@@ -16,5 +16,20 @@ public class AopApplication {
 		
 		System.out.println( bank );
 		
+		try
+		{
+			bank.goToTheBank();
+			bank.getMoney( 100 );
+			bank.getMoney( 100 );
+			bank.getMoney( 1900 );
+			bank.getStub( 1900 );
+			System.out.println();
+			System.out.println(" go to the bank = " + bank.goToTheBank());
+		}
+		catch (Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		
 	}
 }
