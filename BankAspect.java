@@ -1,7 +1,10 @@
 package com.example.demo;
 
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 
@@ -25,5 +28,35 @@ public class BankAspect {
 	{
 		System.out.println("Watch out! exception is about to be thrown!! " + ex.getMessage());
 	}
+	
+	@AfterReturning(pointcut = "execution(public int goToTheBank())", returning = "returnInt")
+	public void getNumberReturnedFromGoToBank(int returnInt)
+	{
+		System.out.println("After going to the bank the method returned " + returnInt);
+		if (returnInt == 1)
+			System.out.println("Bank is open!");
+		else
+			System.out.println("Bank is closed!");
+	}
+	
+	@Around("execution(public int com.example.demo.Bank.goToTheBank())")
+	public int handleIntReturnMethod(ProceedingJoinPoint proceedingJoinPoint) throws Throwable
+	{
+		System.out.println("=============== handle int");
+		System.out.println( proceedingJoinPoint.getSignature() );
+		//return (int)proceedingJoinPoint.proceed();
+		return 1;
+		//return 
+	}
+	
+	
+	@Around("execution(public String com.example.demo.Bank.toString())")
+	public String handleToString(ProceedingJoinPoint proceedingJoinPoint) throws Throwable
+	{
+		System.out.println("=============== handle String");
+		System.out.println( proceedingJoinPoint.getSignature() );
+		return (String)proceedingJoinPoint.proceed() + " Aspect was here!!!";
+		//return 
+	}	
 	
 }

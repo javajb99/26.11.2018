@@ -17,6 +17,11 @@ public class Bank {
 		throw new Exception("You went under the minus !!!");
 	}
 	
+	public int getStub(int amount)  {
+		System.out.println("Getting stub");
+		return 8;
+	}	
+	
 	public void depositMoney(int amount)
 	{
 		this.current_balance += amount;
